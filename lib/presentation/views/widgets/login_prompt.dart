@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:listfy_app/presentation/views/auth/login.dart';
 
 class LoginPrompt extends StatelessWidget {
   const LoginPrompt({super.key});
@@ -17,7 +18,7 @@ class LoginPrompt extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            Navigator.of(context).pushNamed('/login'); 
+            Navigator.pushReplacement(context, MaterialPageRoute(builder:(context) => const Login(),)); 
           },
           child: Text(
             'Login',

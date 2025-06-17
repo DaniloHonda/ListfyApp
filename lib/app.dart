@@ -12,7 +12,6 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
         textTheme: GoogleFonts.chivoTextTheme(),
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.purple),
       ),
       home: const WelcomeView(),
       debugShowCheckedModeBanner: false,

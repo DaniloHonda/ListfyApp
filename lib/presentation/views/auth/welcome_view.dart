@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:listfy_app/presentation/views/auth/login.dart';
+import 'package:listfy_app/presentation/views/auth/register.dart';
 import 'package:listfy_app/presentation/views/widgets/auth_button.dart';
 import 'package:listfy_app/presentation/views/widgets/login_prompt.dart';
 
@@ -48,7 +48,7 @@ class WelcomeView extends StatelessWidget {
                 AuthButton(
                   text: 'Sign up',
                   onPressed: () {
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder:(context) => const Login(),));
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder:(context) => const Register(),));
                   },
                 ),
 
