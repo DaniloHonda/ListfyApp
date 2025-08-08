@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:listfy_app/presentation/views/auth/login.dart';
+import 'package:listfy_app/presentation/views/widgets/auth_prompt.dart';
+import 'package:listfy_app/presentation/views/widgets/custom_text_field.dart';
+import 'package:listfy_app/presentation/views/widgets/labeled_checkbox.dart';
+import 'package:listfy_app/presentation/views/widgets/primary_button.dart';
+import 'package:listfy_app/utils/constants.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -10,10 +15,6 @@ class Register extends StatefulWidget {
 }
 
 class _Register extends State<Register> {
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
   bool _agreeTerms = false;
 
   @override
@@ -25,11 +26,7 @@ class _Register extends State<Register> {
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-              colors: [
-                Color.fromARGB(255, 93, 63, 104),
-                Color.fromARGB(255, 62, 39, 80),
-                Color.fromARGB(255, 49, 33, 59),
-              ],
+              colors: [Constants.darkPurple, Constants.darkerPurple],
             ),
           ),
           child: SingleChildScrollView(
@@ -55,34 +52,24 @@ class _Register extends State<Register> {
                         style: TextStyle(
                           fontSize: MediaQuery.of(context).size.width * 0.07,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                          color: Constants.white,
                         ),
                         textAlign: TextAlign.center,
                       ),
                       
                       const SizedBox(height: 20),
                       
-                      SizedBox(
+                      PrimaryButton(
+                        text: 'Sign up with Google',
+                        onPressed: () {
+                          // Google login
+                        },
+                        fontSize: 16,
                         height: 50,
-                        child: ElevatedButton.icon(
-                          onPressed: () {
-                            // Implement google sign up
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.black,
-                            foregroundColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(25),
-                            ),
-                          ),
-                          icon: const FaIcon(FontAwesomeIcons.google, size: 20, color: Colors.white),
-                          label: const Flexible(
-                            child: Text(
-                              'Sign up with Google',
-                              style: TextStyle(fontSize: 16),
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
+                        icon: const FaIcon(
+                          FontAwesomeIcons.google,
+                          size: 20,
+                          color: Constants.white,
                         ),
                       ),
                       
@@ -90,198 +77,87 @@ class _Register extends State<Register> {
                       
                       const Row(
                         children: [
-                          Expanded(child: Divider(color: Colors.white)),
+                          Expanded(child: Divider(color: Constants.white)),
                           Padding(
                             padding: EdgeInsets.symmetric(horizontal: 16),
                             child: Text(
                               'Or continue with Email',
-                              style: TextStyle(color: Colors.white, fontSize: 14),
+                              style: TextStyle(color: Constants.white, fontSize: 14),
                             ),
                           ),
-                          Expanded(child: Divider(color: Colors.white)),
+                          Expanded(child: Divider(color: Constants.white)),
                         ],
                       ),
                       
                       const SizedBox(height: 20),
                       
-                      TextField(
-                        controller: _nameController,
-                        decoration: InputDecoration(
-                          hintText: 'Enter your name',
-                          hintStyle: const TextStyle(color: Colors.grey),
-                          filled: true,
-                          fillColor: Colors.white,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(25),
-                            borderSide: BorderSide.none,
-                          ),
-                          contentPadding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 16,
-                          ),
-                        ),
+                      CustomTextField(
+                        hintText: 'Enter name',
+                        keyboardType: TextInputType.name,
+                      ),
+
+                      const SizedBox(height: 12),
+                      
+                      CustomTextField(
+                        hintText: 'Enter username',
+                        keyboardType: TextInputType.text,
                       ),
                       
                       const SizedBox(height: 12),
                       
-                      TextField(
-                        controller: _usernameController,
-                        decoration: InputDecoration(
-                          hintText: 'Enter username',
-                          hintStyle: const TextStyle(color: Colors.grey),
-                          filled: true,
-                          fillColor: Colors.white,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(25),
-                            borderSide: BorderSide.none,
-                          ),
-                          contentPadding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 16,
-                          ),
-                        ),
-                      ),
-                      
-                      const SizedBox(height: 12),
-                      
-                      TextField(
-                        controller: _emailController,
+                      CustomTextField(
+                        hintText: 'Enter email',
                         keyboardType: TextInputType.emailAddress,
-                        decoration: InputDecoration(
-                          hintText: 'Enter Email',
-                          hintStyle: const TextStyle(color: Colors.grey),
-                          filled: true,
-                          fillColor: Colors.white,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(25),
-                            borderSide: BorderSide.none,
-                          ),
-                          contentPadding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 16,
-                          ),
-                        ),
                       ),
                       
                       const SizedBox(height: 12),
                       
-                      TextField(
-                        controller: _passwordController,
+                      CustomTextField(
+                        hintText: 'Enter password',
                         obscureText: true,
-                        decoration: InputDecoration(
-                          hintText: 'Enter password',
-                          hintStyle: const TextStyle(color: Colors.grey),
-                          filled: true,
-                          fillColor: Colors.white,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(25),
-                            borderSide: BorderSide.none,
-                          ),
-                          contentPadding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 16,
-                          ),
-                        ),
                       ),
                       
                       const SizedBox(height: 12),
                       
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            height: 24,
-                            width: 24,
-                            child: Checkbox(
-                              value: _agreeTerms,
-                              onChanged: (value) {
-                                setState(() {
-                                  _agreeTerms = value ?? false;
-                                });
-                              },
-                              activeColor: Colors.white,
-                              checkColor: const Color.fromARGB(255, 93, 63, 104),
-                              side: const BorderSide(color: Colors.white),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(6),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 8),
-                          const Expanded(
-                            child: Text(
-                              'I agree with the Terms of Service and Privacy policy',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 14,
-                              ),
-                            ),
-                          ),
-                        ],
+                      LabeledCheckbox(
+                        value: _agreeTerms,
+                        onChanged: (value) {
+                          setState(() {
+                            _agreeTerms = value ?? false;
+                          });
+                        },
+                        label: 'I agree with the Terms of Service and Privacy policy',
+                        fontSize: 14,
                       ),
                       
                       const SizedBox(height: 20),
 
-                      SizedBox(
+                      PrimaryButton(
                         width: double.infinity,
                         height: 50,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            // Implement create account
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.black,
-                            foregroundColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18),
-                            ),
-                          ),
-                          child: const Text(
-                            'Create Account',
-                            style: TextStyle(fontSize: 16),
-                          ),
-                        ),
+                        text: 'Create Account',
+                        fontSize: 16,
+                        onPressed: () {
+                          // Implement account creation logic
+                        }
                       ),
 
                       const SizedBox(height: 15),
 
-                      Column(
-                        children: [
-                          const Text(
-                            "Already have an account?",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 14,
+                      AuthPrompt(
+                        promptText: 'Already have an account? ',
+                        actionText: 'Login',
+                        onTap: () {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Login(),
                             ),
-                            textAlign: TextAlign.center,
-                          ),
-                          const SizedBox(height: 5),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context, 
-                                MaterialPageRoute(
-                                  builder: (context) => const Login(),
-                                ),
-                              );
-                            },
-                            child: const Text(
-                              'Login',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                                decoration: TextDecoration.underline,
-                                decorationColor: Colors.white,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ],
+                          );
+                        }
                       ),
-                      
-                      // Espaço flexível no final
-                      const Flexible(child: SizedBox(height: 2)),
+
+                      const Spacer(flex: 1),
                     ],
                   ),
                 ),
@@ -291,14 +167,5 @@ class _Register extends State<Register> {
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _nameController.dispose();
-    _usernameController.dispose();
-    _emailController.dispose();
-    _passwordController.dispose();
-    super.dispose();
   }
 }

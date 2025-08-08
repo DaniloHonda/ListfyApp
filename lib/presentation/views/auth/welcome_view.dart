@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:listfy_app/presentation/views/auth/login.dart';
 import 'package:listfy_app/presentation/views/auth/register.dart';
-import 'package:listfy_app/presentation/views/widgets/auth_button.dart';
-import 'package:listfy_app/presentation/views/widgets/login_prompt.dart';
+import 'package:listfy_app/presentation/views/widgets/auth_prompt.dart';
+import 'package:listfy_app/presentation/views/widgets/primary_button.dart';
+import 'package:listfy_app/utils/constants.dart';
 
 
 class WelcomeView extends StatelessWidget {
@@ -9,26 +11,23 @@ class WelcomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color.fromARGB(255, 93, 63, 104),
-              Color.fromARGB(255, 62, 39, 80),
-              Color.fromARGB(255, 49, 33, 59),
-            ],
-          ),
+    return Container(
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Constants.darkPurple, Constants.darkerPurple],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
         ),
-        child: SafeArea(
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 32.0),
             child: Column(
               children: [
                 const Spacer(flex: 2),
-
+        
                 SizedBox(
                   width: double.infinity,
                   child: Text(
@@ -42,18 +41,28 @@ class WelcomeView extends StatelessWidget {
                     ),
                   ),
                 ),
-
+        
                 const Spacer(flex: 3),
 
-                AuthButton(
+                PrimaryButton(
                   text: 'Sign up',
+                  width: double.infinity,
+                  height: 56,
                   onPressed: () {
                     Navigator.pushReplacement(context, MaterialPageRoute(builder:(context) => const Register(),));
                   },
                 ),
-
+        
                 const SizedBox(height: 16),
-                const LoginPrompt(),
+
+                AuthPrompt(
+                  promptText: 'Already have an account? ',
+                  actionText: 'Login',
+                  onTap: () {
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder:(context) => const Login(),));
+                  },
+                ),
+                
                 const Spacer(flex: 1),
               ],
             ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'presentation/views/auth/welcome_view.dart';
+import 'package:listfy_app/presentation/views/auth/welcome_view.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
